@@ -1,15 +1,3 @@
-.. index:: User Guide Location
-
-.. _User Guide:
-
-User Guide
-----------
-
-The complete %brand% User Guide is available at
-`<https://support.ixsystems.com/truenasguide/truenas.html>`__
-or by clicking :guilabel:`Guide` in the %brand% user interface.
-
-
 .. index:: Contacting iXsystems
 
 .. _Contacting iXsystems:
@@ -17,7 +5,7 @@ or by clicking :guilabel:`Guide` in the %brand% user interface.
 Contacting iXsystems
 --------------------
 
-For assistance, please contact a %brand% Support Representative:
+For assistance, please contact iX Support:
 
 
 .. tabularcolumns:: |>{\RaggedRight}p{\dimexpr 0.25\linewidth-2\tabcolsep}
@@ -29,6 +17,8 @@ For assistance, please contact a %brand% Support Representative:
    +------------------+-----------------------------------------------------------+
    | Contact Method   | Contact Options                                           |
    +==================+===========================================================+
+   | Web              | `<https://support.ixsystems.com>`__                       |
+   +------------------+-----------------------------------------------------------+
    | Email            | :literal:`support@iXsystems.com`                          |
    +------------------+-----------------------------------------------------------+
    | Telephone        | Monday - Friday, 8:00AM to 5:00PM Pacific Standard Time:  |
@@ -43,3 +33,4 @@ For assistance, please contact a %brand% Support Representative:
    |                  |                                                           |
    |                  | * 1 (678) 835-6101 (local and international)              |
    +------------------+-----------------------------------------------------------+
+

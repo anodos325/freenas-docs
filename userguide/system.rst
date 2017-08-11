@@ -1210,7 +1210,7 @@ screen.
    Update Options
 #endif freenas
 #ifdef truenas
-.. figure:: images/tn_update1c.png
+.. figure:: images/tn_system-update.png
 
    Update Options
 #endif truenas
@@ -1297,18 +1297,22 @@ firewall restrictions.
 #ifdef truenas
 **For Production Use**
 
-* **TrueNAS-9.10-STABLE** (Recommended)
+* **TrueNAS-11.0-STABLE** (Recommended)
 
   After new fixes and features have been tested as production-ready,
   they are added to this train. It is recommended to follow this train
-  and to apply any of its pending updates.
+  and to apply any pending updates from it.
 
 **Legacy Versions**
 
+* **TrueNAS-9.10-STABLE**
+
+  Maintenance-only updates for the previous branch of %brand%.
+
 * **TrueNAS-9.3-STABLE**
 
-  Maintenance-only updates for an older version of %brand%. Use this
-  train only at the recommendation of an iX support engineer.
+  Maintenance-only updates for the older 9.3 branch of %brand%. Use
+  this train only at the recommendation of an iX support engineer.
 #endif truenas
 
 The :guilabel:`Verify Install` button verifies that the operating
@@ -2329,12 +2333,14 @@ and described in
    |                |                | if the system is using a link aggregation, after 2 seconds                                                                                            |
    |                |                |                                                                                                                                                       |
    +----------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Sync to Peer   | button         | force configuration sync from the active node to the standby node; the standby node must be rebooted after the sync; the HA daemon does this          |
-   |                |                | automatically, do not use this unless requested by an iX support engineer                                                                             |
+   | Sync to Peer   | button         | open a dialog window to force the %brand% configuration to sync from the active node to the standby node; after the sync, the                         |
+   |                |                | standby node must be rebooted (enabled by default) to load the new configuration; *do not use this unless requested by an iX support engineer,        |
+   |                |                | the HA daemon normally handles configuration sync automatically*                                                                                      |
    |                |                |                                                                                                                                                       |
    +----------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Sync From Peer | button         | force configuration sync from the standby node to the active node; the HA daemon does this                                                            |
-   |                |                | automatically, do not use this unless requested by an iX support engineer                                                                             |
+   | Sync From Peer | button         | open a dialog window to force the %brand% configuration to sync from the standby node to the active node;                                             |
+   |                |                | *do not use this unless requested by an iX support engineer, the HA daemon normally handles configuration sync automatically*                         |
+   |                |                |                                                                                                                                                       |
    +----------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -2342,79 +2348,6 @@ and described in
    nodes to come up in standby mode. The GUI shows an additional
    :guilabel:`Force Takeover` button which can be used to force that
    node to take control.
-
-
-.. index:: Failover
-
-.. _Failover Management:
-
-Failover Management
-~~~~~~~~~~~~~~~~~~~
-
-In general, the web GUI is preferred for failover configuration and
-management. The :command:`hactl` utility is included for failover
-management when command-line use is required.
-
-When this command is given without options, it displays the current
-failover status. This example is from an active node with failover
-enabled:
-
-
-.. code-block:: none
-
-   hactl
-   Node status: Active
-   Failover status: Enabled
-
-
-This example is from a system that has not been configured for
-failover:
-
-.. code-block:: none
-
-   hactl
-   Node status: Not an HA node
-
-
-:numref:`Table %s <hactl_opts_tab>`
-lists the options for this command.
-
-
-.. tabularcolumns:: |>{\RaggedRight}p{\dimexpr 0.25\linewidth-2\tabcolsep}
-                    |>{\RaggedRight}p{\dimexpr 0.64\linewidth-2\tabcolsep}|
-
-.. _hactl_opts_tab:
-
-.. table:: hactl Options
-
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | Option              | Description                                                                                 |
-   |                     |                                                                                             |
-   +=====================+=============================================================================================+
-   | :literal:`enable`   | administratively enable failover                                                            |
-   |                     |                                                                                             |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`disable`  | administratively disable failover                                                           |
-   |                     |                                                                                             |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`status`   | node type indicator: active, passive, or non-HA                                             |
-   |                     |                                                                                             |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`takeover` | **use the web GUI for this function unless it is not available**; can only be executed      |
-   |                     | on the passive node; warning is displayed about the active node rebooting; current          |
-   |                     | active node reboots and the passive node takes over                                         |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`giveback` | **use the web GUI for this function unless it is not available**; can only be executed      |
-   |                     | on the active node; a warning is displayed that this node will reboot; this node reboots,   |
-   |                     | giving control back to the other node                                                       |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`-h` or    | show the help message (options) for this command                                            |
-   | :literal:`--help`   |                                                                                             |
-   +---------------------+---------------------------------------------------------------------------------------------+
-   | :literal:`-q`       | prevent status display if this is a non-HA node                                             |
-   |                     |                                                                                             |
-   +---------------------+---------------------------------------------------------------------------------------------+
-
 
 .. tip:: The %brand% version of the :command:`ifconfig` command adds
    two additional fields to the output to help with failover

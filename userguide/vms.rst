@@ -124,6 +124,12 @@ VMs set to *UEFI* booting are also given a VNC (Virtual Network
 Computing) remote connection:
 
 
+.. tip:: If a RealVNC 5.X Client shows the error
+   :literal:`RFB protocol error: invalid message type`, disable the
+   :guilabel:`Adapt to network speed` option and move the slider to
+   :guilabel:`Best quality`.
+
+
 .. figure:: images/vms-vnc.png
 
    VM VNC Device

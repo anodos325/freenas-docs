@@ -29,13 +29,13 @@ copyright = '2011-2017, iXsystems'
 #
 
 # VERSION is the LONG, FULL version number with all patch levels, like "11.0-U1"
-version = '11.0-U1'
+version = '11.0-U2'
 # RELEASE is the short major release number ONLY, like "11.0"
 release = '11.0'
 
 if tags.has('truenas'):
     # VERSION is the LONG, FULL, version number
-    version = '11.0-U1'
+    version = '11.0-U2'
     # RELEASE is the short major release number ONLY
     release = '11.0'
 
@@ -49,6 +49,7 @@ master_doc = 'freenas'
 extensions = [
     'sphinxcontrib.httpdomain'
 ]
+cover_pic = r''
 numfig = True
 numfig_secnum_depth = (2)
 
@@ -57,6 +58,7 @@ if tags.has('truenas'):
     tags.remove('freenas')
     project = brand + ' ' + six.u(version) + six.u(' User Guide')
     master_doc = 'truenas'
+    cover_pic = r''
 
 # BSGs
 if tags.has('bsg-unified'):
@@ -64,24 +66,42 @@ if tags.has('bsg-unified'):
     tags.remove('freenas')
     project = brand + six.u(' Unified Storage Array Basic Setup Guide')
     master_doc = 'bsg-unified'
+    cover_pic = r''
 
 if tags.has('bsg-e16'):
     brand = 'TrueNAS®' if six.PY3 else u'TrueNAS®'
     tags.remove('freenas')
     project = brand + six.u(' E16/E16F Expansion Shelf Basic Setup Guide')
     master_doc = 'bsg-e16'
+    cover_pic = r''
 
 if tags.has('bsg-e24'):
     brand = 'TrueNAS®' if six.PY3 else u'TrueNAS®'
     tags.remove('freenas')
     project = brand + six.u(' E24 Expansion Shelf Basic Setup Guide')
     master_doc = 'bsg-e24'
+    cover_pic = r''
 
 if tags.has('bsg-x10'):
     brand = 'TrueNAS®' if six.PY3 else u'TrueNAS®'
     tags.remove('freenas')
     project = brand + six.u(' X10 Unified Storage Array Basic Setup Guide')
     master_doc = 'bsg-x10'
+    cover_pic = r'\vspace*{1in}\hspace*{4in}\includegraphics[width=12in]{../../../images/tn_x10_front.png}'
+
+if tags.has('bsg-es12'):
+    brand = 'TrueNAS®' if six.PY3 else u'TrueNAS®'
+    tags.remove('freenas')
+    project = brand + six.u(' ES12 Expansion Shelf Basic Setup Guide')
+    master_doc = 'bsg-es12'
+    cover_pic = r'\vspace*{1in}\hspace*{4in}\includegraphics[width=12in]{../../../images/tn_es12_front.png}'
+
+if tags.has('bsg-es60'):
+    brand = 'TrueNAS®' if six.PY3 else u'TrueNAS®'
+    tags.remove('freenas')
+    project = brand + six.u(' ES60 Expansion Shelf Basic Setup Guide')
+    master_doc = 'bsg-es60'
+    cover_pic = r''
 
 
 # |brand| will be replaced with FreeNAS® or TrueNAS®
@@ -314,6 +334,8 @@ PREAMBLE = PREAMBLE + r'''
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+%for bitmaps
+\usepackage{graphicx}
 %for ragged right tables
 \usepackage{array,ragged2e}
 \definecolor{ixblue}{cmyk}{0.85,0.24,0,0}
@@ -340,6 +362,7 @@ PREAMBLE = PREAMBLE + r'''
       \fontsize{18}{22}\fontseries{sbc}\selectfont%
       \docdate\par%
     \end{widemargins}%
+    %%cover_pic%%
     \begin{tikzpicture}[remember picture,overlay]
       \fill [ixblue] (current page.south west) rectangle ($(current page.south east) + (0, 2in)$);
     \end{tikzpicture}
@@ -358,6 +381,8 @@ PREAMBLE = PREAMBLE + r'''
   \fancyfoot[C]{\textbf{\thepage}}
 }
 '''
+
+PREAMBLE = PREAMBLE.replace('%%cover_pic%%', cover_pic)
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
@@ -409,6 +434,18 @@ if tags.has('bsg-e24'):
 if tags.has('bsg-x10'):
     latex_documents = [
       ('bsg-x10', 'BSG-X10.tex', texproject, 'iXsystems', 'howto'),
+    ]
+    latex_elements.update({'printindex': ''})
+
+if tags.has('bsg-es12'):
+    latex_documents = [
+      ('bsg-es12', 'BSG-ES12.tex', texproject, 'iXsystems', 'howto'),
+    ]
+    latex_elements.update({'printindex': ''})
+
+if tags.has('bsg-es60'):
+    latex_documents = [
+      ('bsg-es60', 'BSG-ES60.tex', texproject, 'iXsystems', 'howto'),
     ]
     latex_elements.update({'printindex': ''})
 

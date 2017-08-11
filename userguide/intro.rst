@@ -213,10 +213,10 @@ New Features in |release|
   firmware versions no longer correspond.
 
 
-.. _Changes in |version|:
+.. _Changes Since |release|:
 
-Changes in |version|
---------------------
+Changes Since |release|
+-----------------------
 
 %brand% uses a "rolling release" model instead of point releases. The
 :ref:`Update` mechanism makes it easy to keep up-to-date with the
@@ -229,11 +229,28 @@ changes that have occurred since |release| was released.
    |version|. If a screen on the system is not the same as shown in
    this guide, make sure that all updates have been applied.
 
+U1
+~~
+
 * The :guilabel:`Read only` checkbox has been removed from
   :menuselection:`Jails --> Templates --> Add Jail Templates`.
 
 * The NT4 option has been removed from :ref:`Directory Services` as it
   is no longer supported by Samba.
+
+U2
+~~
+
+* Samba has been updated to `4.6.6
+  <https://www.samba.org/samba/history/samba-4.6.6.html>`__ to address
+  `CVE-2017-11103
+  <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11103>`__.
+
+* The system has been patched to address `FreeBSD-SA-17:05.heimdal
+  <https://www.freebsd.org/security/advisories/FreeBSD-SA-17:05.heimdal.asc>`__.
+
+* The :ref:`Active Directory` :guilabel:`Enable Monitoring` option is no
+  longer considered experimental.
 
 .. index:: Hardware Recommendations
 .. _Hardware Recommendations:
@@ -446,7 +463,7 @@ drive, 2 GB will be reserved for swap.
 
 Users new to ZFS who are purchasing hardware should read through
 `ZFS Storage Pools Recommendations
-<http://www.solarisinternals.com/wiki/index.php/ZFS_Best_Practices_Guide#ZFS_Storage_Pools_Recommendations>`_
+<https://web.archive.org/web/20161028084224/http://www.solarisinternals.com/wiki/index.php/ZFS_Best_Practices_Guide#ZFS_Storage_Pools_Recommendations>`_
 first.
 
 ZFS *vdevs*, groups of disks that act like a single device, can be
